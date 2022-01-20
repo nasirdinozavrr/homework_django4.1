@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css/' %}"/>
+</head>
+<body>
+<style>
+    .btn-primary {
+        background-color: #b41e1e;
+        background-image: linear-gradient(0deg, #e61d1d 0%, #b41e1e 100%);
+    }
+
+    .button__container {
+        max-width: 960px;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    body {
+        background-color: #72A0C1;
+        background-image: linear-gradient(19deg, #72A0C1 0%, #72A0C1 100%);
+    }
+
+    .detail-image {
+        height: 800px;
+        object-fit: container;
+    }
+
+    .book-detail {
+        height: 50%;
+    }
+
+    .list-group-item {
+        background-color: #330201;
+        background-image: linear-gradient(135deg, #c40307 0%, #c40307 100%);
+        font-family: Arial, Helvetica, sans-serif;
+        height: 50%;
+    }
+
+    .body__button {
+        display: flex;
+        justify-content: center;
+        gap:20px;
+    }
+
+    .container {
+        height:50%;
+    }
+
+    .book-detail {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #b41e1e;
+        background-image: linear-gradient(19deg, #e61d1d 0%, #330201 100%);
+        margin-bottom: 10%;
+    }
+    .rating-area {
+	overflow: hidden;
+	width: 265px;
+        margin: 0 auto;
+    }
+    .rating-area:not(:checked) > input {
+        display: none;
+    }
+    .rating-area:not(:checked) > label {
+        float: right;
+        width: 42px;
+        padding: 0;
+        cursor: pointer;
+        font-size: 32px;
+        line-height: 32px;
+        color: lightgrey;
+        text-shadow: 1px 1px #bbb;
+        }
+    .rating-area:not(:checked) > label:before {
+        content: '★';
+    }
+    .rating-area > input:checked ~ label {
+        color: gold;
+        text-shadow: 1px 1px #c60;
+    }
+        .rating-area:not(:checked) > label:hover,
+        .rating-area:not(:checked) > label:hover ~ label {
+            color: gold;
+        }
+    .rating-area > input:checked + label:hover,
+    .rating-area > input:checked + label:hover ~ label,
+    .rating-area > input:checked ~ label:hover,
+    .rating-area > input:checked ~ label:hover ~ label,
+    .rating-area > label:hover ~ input:checked ~ label {
+        color: gold;
+        text-shadow: 1px 1px goldenrod;
+    }
+    .rate-area > label:active {
+        position: relative;
+    }
+
+</style>
+<div class="button__container">
+    <button type="button" class="btn btn-primary"><a href="/books/">Books</a></button>
+    <button type="button" class="btn btn-primary"><a href="/add-books/">Add Book</a></button>
+</div>
+<div class="container book-detail">
+    <img src="{{ book.image.url }}" class="card-img-top detail-image" alt="...">
+    <div class="card-body body_detail">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">{{ book.description }}</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Quantity of series: {{ book.quantity }}</li>
+            <li class="list-group-item">Genre: {{ book.genre }}</li>
+            <li class="list-group-item">Date Filmed: {{ book.date_filmed }}</li>
+            <li class="list-group-item">Rate:
+                <div class="rating-area">
+                <input type="radio" id="star-5" name="rating" value="5"><a href="/books/{{ book.id }}"></a>
+                <label for="star-5" title="Оценка «5»"></label>
+                <input type="radio" id="star-4" name="rating" value="4"><a href="/books/{{ book.id }}"></a>
+                <label for="star-4" title="Оценка «4»"></label>
+                <input type="radio" id="star-3" name="rating" value="3"><a href="/books/{{ book.id }}"></a>
+                <label for="star-3" title="Оценка «3»"></label>
+                <input type="radio" id="star-2" name="rating" value="2"><a href="/books/{{ book.id }}"></a>
+                <label for="star-2" title="Оценка «2»"></label>
+                <input type="radio" id="star-1" name="rating" value="1"><a href="/books/{{ book.id }}"></a>
+                <label for="star-1" title="Оценка «1»"></label>
+                <a href="/books/{{ int.id }}" class="rating-area"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body body__button">
+        <button type="button" class="btn btn-primary"><a href="/books/{{ book.id }}/update/">Change </a></button>
+        <button type="button" class="btn btn-primary"><a href="/books/{{ book.id }}/delete/">Delete </a></button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css/' %}"/>
+</head>
+<body>
+<style>
+    .posts__container {
+        max-width: 950px;
+        margin-bottom: 30px;
+    }
+
+    body {
+        background-color: #5072A7;
+        background-image: linear-gradient(43deg, #72A0C1 0%, #27458f 46%, #72A0C1 100%);
+    }
+
+    .post__img {
+        height: 480px;
+        object-fit: container;
+    }
+
+    .btn-primary {
+        background-color: #b41e1e;
+        background-image: linear-gradient(111deg, #e61d1d 0%, #b41e1e 100%);
+
+    }
+    .button__container {
+        max-width:1250px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+</style>
+
+
+<div class="container button__container">
+    <a href="books/" class="btn btn-primary">Books</a>
+
+</div>
+
+<div class="container posts__container">
+    <div class="row gy-5">
+        {% for i in book %}
+        <div class="col-6">
+            <div class="card">
+                <img src="{{ i.image.url }}" class="card-img-top post__img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.title }}</h5>
+                    <p class="card-text">{{ i.description }}</p>
+                    <a href="/books/{{ i.id }}/" class="btn btn-primary">Go detail</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
